@@ -1,0 +1,77 @@
+{
+  "mode": "autonomous",
+  "description": "Configuration for autonomous development mode",
+  "settings": {
+    "auto_execute": true,
+    "quality_gates_required": true,
+    "agent_delegation": true,
+    "systematic_execution": true
+  },
+  "quality_requirements": {
+    "linting": {
+      "enabled": true,
+      "max_violations": 0,
+      "fail_on_warning": true
+    },
+    "testing": {
+      "enabled": true,
+      "min_coverage": 80,
+      "require_all_pass": true,
+      "include_integration": true
+    },
+    "performance": {
+      "enabled": true,
+      "max_regression_percent": 5,
+      "baseline_comparison": true
+    },
+    "security": {
+      "enabled": true,
+      "vulnerability_scan": true,
+      "dependency_check": true
+    }
+  },
+  "agent_pipeline": {
+    "enabled": true,
+    "sequence": [
+      {
+        "agent": "architect",
+        "required": true,
+        "description": "Analyze requirements and create technical design"
+      },
+      {
+        "command": "plan-execution",
+        "required": true,
+        "description": "Execute systematic development plan"
+      },
+      {
+        "agent": "quality-reviewer",
+        "required": true,
+        "description": "Final quality and security review"
+      },
+      {
+        "agent": "technical-writer",
+        "required": false,
+        "description": "Generate documentation"
+      }
+    ]
+  },
+  "safety_checks": {
+    "container_required": true,
+    "permission_boundaries": true,
+    "network_restrictions": true,
+    "file_system_sandbox": true
+  },
+  "automation": {
+    "build_validation": true,
+    "test_execution": true,
+    "lint_checking": true,
+    "security_scanning": false,
+    "documentation_generation": true
+  },
+  "logging": {
+    "level": "info",
+    "log_agent_activities": true,
+    "log_quality_checks": true,
+    "log_errors_detailed": true
+  }
+}

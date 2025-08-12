@@ -1,0 +1,45 @@
+{
+	"name": "Claude Config Development Environment",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"VARIANT": "20",
+			"INSTALL_NODE": "true",
+			"NODE_VERSION": "lts/*"
+		}
+	},
+	"runArgs": [
+		"--cap-add=NET_ADMIN",
+		"--cap-add=NET_RAW"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"eamodio.gitlens"
+			],
+			"settings": {
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "esbenp.prettier-vscode",
+				"eslint.format.enable": true,
+				"editor.codeActionsOnSave": {
+					"source.fixAll.eslint": "explicit"
+				},
+				"terminal.integrated.defaultProfile.linux": "zsh"
+			}
+		}
+	},
+	"mounts": [
+		"source=commandhistory,target=/home/node/.bash_history,type=volume",
+		"source=claude-config,target=/home/node/.config,type=volume"
+	],
+	"containerEnv": {
+		"NODE_OPTIONS": "--max-old-space-size=4096",
+		"POWERLEVEL9K_DISABLE_GITSTATUS": "true"
+	},
+	"remoteUser": "node",
+	"workspaceFolder": "/workspace",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+	"postCreateCommand": "bash .devcontainer/init-firewall.sh"
+}

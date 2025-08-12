@@ -1,0 +1,106 @@
+{
+  "mode": "production",
+  "description": "Configuration for production-ready autonomous development",
+  "settings": {
+    "auto_execute": true,
+    "quality_gates_required": true,
+    "agent_delegation": true,
+    "systematic_execution": true,
+    "strict_validation": true
+  },
+  "quality_requirements": {
+    "linting": {
+      "enabled": true,
+      "max_violations": 0,
+      "fail_on_warning": true,
+      "strict_mode": true
+    },
+    "testing": {
+      "enabled": true,
+      "min_coverage": 95,
+      "require_all_pass": true,
+      "include_integration": true,
+      "include_e2e": true,
+      "performance_tests": true
+    },
+    "performance": {
+      "enabled": true,
+      "max_regression_percent": 2,
+      "baseline_comparison": true,
+      "memory_leak_detection": true
+    },
+    "security": {
+      "enabled": true,
+      "vulnerability_scan": true,
+      "dependency_check": true,
+      "static_analysis": true,
+      "penetration_testing": false
+    },
+    "documentation": {
+      "enabled": true,
+      "api_docs_required": true,
+      "readme_updated": true,
+      "changelog_updated": true
+    }
+  },
+  "agent_pipeline": {
+    "enabled": true,
+    "sequence": [
+      {
+        "agent": "architect",
+        "required": true,
+        "description": "Complete architectural analysis and design",
+        "deliverables": ["architecture_doc", "api_specification", "test_plan"]
+      },
+      {
+        "command": "plan-execution",
+        "required": true,
+        "description": "Execute systematic development with quality gates",
+        "validation_required": true
+      },
+      {
+        "agent": "quality-reviewer",
+        "required": true,
+        "description": "Comprehensive quality and security review",
+        "deliverables": ["quality_report", "security_analysis"]
+      },
+      {
+        "agent": "technical-writer",
+        "required": true,
+        "description": "Complete documentation suite",
+        "deliverables": ["api_docs", "user_guide", "deployment_guide"]
+      }
+    ]
+  },
+  "safety_checks": {
+    "container_required": true,
+    "permission_boundaries": true,
+    "network_restrictions": true,
+    "file_system_sandbox": true,
+    "code_signing": false,
+    "audit_trail": true
+  },
+  "automation": {
+    "build_validation": true,
+    "test_execution": true,
+    "lint_checking": true,
+    "security_scanning": true,
+    "documentation_generation": true,
+    "performance_benchmarking": true,
+    "dependency_updates": false
+  },
+  "logging": {
+    "level": "info",
+    "log_agent_activities": true,
+    "log_quality_checks": true,
+    "log_errors_detailed": true,
+    "log_performance_metrics": true,
+    "export_reports": true
+  },
+  "deployment": {
+    "pre_deployment_validation": true,
+    "rollback_plan_required": true,
+    "monitoring_setup": true,
+    "health_checks": true
+  }
+}

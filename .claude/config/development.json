@@ -1,0 +1,74 @@
+{
+  "mode": "development",
+  "description": "Configuration for interactive development mode",
+  "settings": {
+    "auto_execute": false,
+    "quality_gates_required": true,
+    "agent_delegation": true,
+    "systematic_execution": false,
+    "interactive_prompts": true
+  },
+  "quality_requirements": {
+    "linting": {
+      "enabled": true,
+      "max_violations": 5,
+      "fail_on_warning": false
+    },
+    "testing": {
+      "enabled": true,
+      "min_coverage": 60,
+      "require_all_pass": false,
+      "include_integration": false
+    },
+    "performance": {
+      "enabled": false,
+      "max_regression_percent": 10,
+      "baseline_comparison": false
+    },
+    "security": {
+      "enabled": true,
+      "vulnerability_scan": false,
+      "dependency_check": true
+    }
+  },
+  "agent_pipeline": {
+    "enabled": true,
+    "manual_control": true,
+    "sequence": [
+      {
+        "agent": "architect",
+        "required": false,
+        "description": "Optional: Design phase for complex features"
+      },
+      {
+        "agent": "developer",
+        "required": false,
+        "description": "Implementation as needed"
+      },
+      {
+        "agent": "debugger",
+        "required": false,
+        "description": "Investigation when issues arise"
+      }
+    ]
+  },
+  "safety_checks": {
+    "container_required": false,
+    "permission_boundaries": true,
+    "network_restrictions": false,
+    "file_system_sandbox": false
+  },
+  "automation": {
+    "build_validation": false,
+    "test_execution": false,
+    "lint_checking": false,
+    "security_scanning": false,
+    "documentation_generation": false
+  },
+  "logging": {
+    "level": "debug",
+    "log_agent_activities": true,
+    "log_quality_checks": false,
+    "log_errors_detailed": true
+  }
+}
